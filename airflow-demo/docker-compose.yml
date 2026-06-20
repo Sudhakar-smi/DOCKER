@@ -1,0 +1,25 @@
+services:
+
+  airflow:
+    build: .
+    container_name: airflow-web
+
+    ports:
+      - "8080:8080"
+
+    volumes:
+      - .:/workspace
+
+    command: airflow standalone
+
+  spark-jupyter:
+    build: .
+    container_name: airflow-spark-jupyter
+
+    ports:
+      - "8888:8888"
+
+    volumes:
+      - .:/workspace
+
+    command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
